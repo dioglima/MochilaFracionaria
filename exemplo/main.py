@@ -59,29 +59,32 @@ def mochilafracionaria(vetor, qtd_objetos, capacidade):
             capacidade -= pesos[i]
         else:
             fracao_obj = capacidade / pesos[i]
+            # Objeto Adicionado fracionado
             mochila.append((valores[i],pesos[i],fracao_obj))
             valor_total += fracao_obj * valores[i]
             break
-            # capacidade = capacidade - pesos[i]
             
     return mochila, valor_total
 
 
 
 def medicoes(arr, capacidade):
+    # inicia o tracemaloc para verificar a memoria
     tracemalloc.start()
+    #inicia o tempo
     inicio = time.time()
 
     sorted_arr = merge_sort(arr)
     mochila, valor_total = mochilafracionaria(sorted_arr,len(sorted_arr),capacidade)
-
+    
+    #fim da execução
     fim = time.time()
     tempo_execucao = fim - inicio
     current, peak = tracemalloc.get_traced_memory()
     tracemalloc.stop()
 
-    current = current / 10**6
-    peak = peak / 10**6
+    current = current # Atual
+    peak = peak # Pico
 
     return tempo_execucao, current, peak, mochila, valor_total
 
