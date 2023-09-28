@@ -1,5 +1,6 @@
 from mochila_frac_n import construir_mochila
 
+n = 0
 arquivo = open(f"instancia_{n}.txt", "r")
 conteudo = arquivo.read()
 arquivo.close()

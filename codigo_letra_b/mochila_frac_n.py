@@ -19,14 +19,15 @@ def partition(vetor, left, right):
 
     storeIndex = left
 
-    for i in range(vetor):
-        if vetor[i] < pivot(vetor):
+    for i in range(len(vetor)):
+        # [1] chave na tupla das instancias referente ao peso
+        if vetor[i][1] < pivot(vetor):
             swap(vetor, i, storeIndex)
             storeIndex = storeIndex + 1
 
     swap(vetor, storeIndex, right)
 
-    return storeIndex
+    return vetor
 
 
 def mochilafracionaria(vetor, qtd_objetos, capacidade):
@@ -54,7 +55,10 @@ def mochilafracionaria(vetor, qtd_objetos, capacidade):
 
 
 def construir_mochila(arr, capacidade):
-    sorted_arr = partition(arr)
-    mochila, valor_total = mochilafracionaria(sorted_arr, len(sorted_arr), capacidade)
+    size_arr = len(arr)
+    # ordena o vetor
+    sorted_arr = partition(vetor=arr,left=0, right=size_arr-1)
+    #cria a mochila
+    mochila, valor_total = mochilafracionaria(sorted_arr, size_arr, capacidade)
 
     return mochila, valor_total
